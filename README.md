@@ -4,6 +4,7 @@ iSnooze
 Annoying alarm clock app for Mozilla JS Hackathon
 
 Example: http://www.vincentcchan.com/isnooze/0.4/
+
 The 15-minute mock: http://www.vincentcchan.com/isnooze/iSnoozeConcept.pdf
 
 What it does
