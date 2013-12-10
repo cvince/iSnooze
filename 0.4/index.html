@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Navigation Bar</title>
+    <!-- 	<meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0 height=960" /> -->
+
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, target-densityDpi=device-dpi" />
+    <!-- the three things that jQuery Mobile needs to work -->
+    <link rel="stylesheet" href="jquery.mobile-1.0rc2/jquery.mobile-1.0rc2.css" />
+    <link rel="stylesheet" href="main.css" />
+	<link href="http://cloud.webtype.com/css/c4d03517-373a-4465-beec-ed29cdebd782.css" rel="stylesheet" type="text/css" />										
+	<script src="jquery-1.6.4.js" type="text/javascript"></script>
+    <script src="jquery.mobile-1.0rc2/jquery.mobile-1.0rc2.js" type="text/javascript"></script>
+	<script src="jquery.timePicker.js" type="text/javascript"></script>
+    <script src="cordova-1.5.0.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="timePicker.css" />    
+       
+</head>
+<body>
+    <section id="homepage" data-role="page" style="">
+    	<!--INSERT CLOCK DATA HERE-->
+        <h5><div id="currentTime">00:00</div></h5>
+        <!--END INSERT CLOCK DATA-->
+                      
+    </section>	
+    <section id="isnoozealert" data-role="page">
+    	<!--INSERT CLOCK DATA HERE-->
+<!--         <h4><div id="currentTime">00:00</div></h4>
+ -->        <!--END INSERT CLOCK DATA-->
+        
+        <div class="snooze button">
+        	<img src="images/snoozebutton.png">
+        </div>
+        
+        <div class="dismiss button">
+        	<img src="images/dismissbutton.png">
+        </div>
+        
+        <div id="sound_element"></div>
+                
+    </section>	
+
+    <!-- This is the first page -->
+    <section id="paymentpage" data-role="page">
+        <h1>PAYMENT</h1>
+        
+        <h3>Select Payment Amount:</h3>
+        
+        <div id="paymentAmount">$</div><input class="dropDown">
+        
+        <div class=""></div>
+              
+    </section>
+
+    <section id="settingspage" data-role="page">
+        <h1>SETTINGS</h1>
+        
+        <h3>Alarm Time:</h3>
+                
+        
+    </section>
+
+    <section id="alarmpage" data-role="page">
+        <h1>ALARM</h1>
+        
+        <h3>Alarm Time:</h3>        
+        
+        <input class="dropDown" id="pickTime">
+
+        <h3>Snooze Interval:</h3>        
+        
+        <input class="dropDown" id="pickInterval" placeholder="5min">
+
+        
+ 
+    </section>    
+
+        <div class="app-navigation">
+            <a id="clock" href="#homepage"><img src="images/clockIcon.png"></a>        
+            <a id="payment" href="#paymentpage"><img src="images/paymentIcon.png"></a>
+            <a id="settings" href="#settingspage"><img src="images/settingsIcon.png"></a>
+            <a id="alarm" href="#alarmpage"><img src="images/alarmIcon.png"></a>
+        </div>  
+
+	<script>
+    
+$("#clock").click(function(){
+    $(this).addClass("app-active");
+    $("#payment").removeClass("app-active");
+    $("#settings").removeClass("app-active");
+    $("#alarm").removeClass("app-active");            
+});
+
+$("#payment").click(function(){
+    $(this).addClass("app-active");
+    $("#clock").removeClass("app-active");
+    $("#settings").removeClass("app-active");
+    $("#alarm").removeClass("app-active");            
+});
+
+$("#settings").click(function(){
+    $(this).addClass("app-active");
+    $("#payment").removeClass("app-active");
+    $("#clock").removeClass("app-active");
+    $("#alarm").removeClass("app-active");            
+});
+ 
+$("#alarm").click(function(){
+    $(this).addClass("app-active");
+    $("#payment").removeClass("app-active");
+    $("#settings").removeClass("app-active");
+    $("#clock").removeClass("app-active");            
+}); 
+
+    var snoozeTime = 300000; // default to 5 min
+    var alarm_media = new Media("black.ogg");
+    $("#pickTime").change(function(){
+        var i = $("#pickTime").val();
+        i = i.split(":");
+    
+        // hh:mm
+        
+        var today = new Date();
+        
+        var alarmTime = new Date();
+        alarmTime.setHours(i[0]);
+        alarmTime.setMinutes(i[1]);	
+        alarmTime.setSeconds(0);
+        
+        var runAlarmTime = alarmTime.getTime() - today.getTime()
+
+        // console.log(runAlarmTime);
+        
+        setTimeout(makeAlarmGoNow, runAlarmTime);
+    
+    });
+    
+    var makeAlarmGoNow = function() {
+
+        // show up alarm page
+        // alarm_media.play();
+		$.mobile.changePage($("#isnoozealert"),"slide");
+		$('#sound_element').html(
+		"<embed src='"+"http://upload.wikimedia.org/wikipedia/en/9/98/Rebecca_Black_Friday_Clip.ogg"+"' hidden=true autostart=true loop=false>");
+        
+    }
+    
+    var checkTime = function(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+    
+    var currentTime = function() {
+    
+        var today = new Date();
+    
+        var h = checkTime(today.getHours());
+        var m = checkTime(today.getMinutes());
+        var s = checkTime(today.getSeconds());
+    
+        // write logic to display time better
+    
+        $('#currentTime').html(h + ":" + m);
+    
+        setTimeout(currentTime, 1000);
+    
+    }
+    
+    currentTime();
+    
+    // $("#pickTime").timePicker();
+    
+    $("#pickTime").timePicker({
+      step: 1});
+    
+    $("#pickInterval").change(function(){
+
+        snoozeTime = $("#pickInterval").val() * 60 * 1000;
+
+    });
+
+    $('.snooze').live("click", function() {
+
+        $('#sound_element').html("");
+        //alarm_media.stop();
+        setTimeout(makeAlarmGoNow, snoozeTime);
+        $.mobile.changePage($("#homepage"),"slide")
+
+    })
+
+    </script>		
+ 
+</body>
+</html>

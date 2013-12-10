@@ -1,0 +1,123 @@
+@charset "utf-8";
+/* CSS Document */
+
+h1{
+	font-family: Interstate;
+	font-style: normal;
+	font-weight: bold;
+	color: #333;	
+	font-size: 48px;
+	margin-left: 20px;
+}
+
+h3{
+	font-family: "Interstate Light";
+	font-style: normal;
+	font-weight: normal;
+	margin-left: 20px;	
+}
+
+h4{
+	color: #fff;
+	margin-left: 20px;
+	font-family: Interstate;
+	font-style: normal;
+	font-weight: bold;	
+	font-size: 40px;
+}
+
+.small{
+	color: #fff;
+	margin-left: 20px;
+	font-family: Interstate;
+	font-style: normal;
+	font-weight: bold;	
+	font-size: 24px;	
+}
+
+#isnoozealert{
+	background: #C60000;
+}
+
+.app-navigation{
+	position: absolute;
+	bottom: 0px;
+	left: 50%;
+	margin-left: -155px;
+	margin-bottom: 20px;
+	width: 310px;
+	height: 60px;
+}
+
+.app-navigation a{
+	position: relative;
+	float: left;
+	margin-left: 20px;
+	margin-right: 20px;
+	width: 40px;
+	height: 40px;
+	padding: 10px;
+}
+
+.app-active{
+	background: #FFF;
+}
+
+.button{
+	margin-top: 30px;
+	position: relative;
+	left: 50%;
+	margin-left: -166px;
+	width: 332px;
+}
+
+.snooze{
+	height: 214px;
+	background:url(images/snoozebg.png);
+}
+
+.button img{
+	position: absolute;
+	top: -7px;
+}
+
+.button img:active{
+	top: -3px;
+}
+
+.dismiss{
+	height: 57px;
+	background:url(images/dismissbg.png);	
+}
+
+/*---
+
+			ALARM SETTINGS
+
+*/
+
+input.dropDown{
+	position: relative;
+	margin-left: 20px;
+	width: 80%;
+	font-family: Interstate;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 24px;	
+}
+
+
+/*---
+
+			PAYMENT SETTINGS
+
+*/
+
+#paymentAmount{
+	position: absolute;	
+	font-family: Interstate;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 24px;
+	left: 20px;		
+}

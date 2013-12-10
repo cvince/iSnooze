@@ -1,0 +1,32 @@
+div.time-picker {		
+	position: absolute;
+	height: 100px;
+	width: 60%; /* needed for IE */
+	overflow: auto;
+	background: #fff;
+	border: 0px solid #aaa;
+	z-index: 99;
+	margin: 0;
+}
+div.time-picker-12hours {
+  width:6em; /* needed for IE */
+}
+
+div.time-picker ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+div.time-picker li {
+  cursor: pointer;
+  height: 30px;
+	font-family: Interstate;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 14px;
+  padding: 4px 3px;
+}
+div.time-picker li.selected {
+  background: #0063CE;
+  color: #fff;
+}
