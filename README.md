@@ -3,6 +3,8 @@ iSnooze
 
 Annoying alarm clock app for Mozilla JS Hackathon
 
+Example: http://www.vincentcchan.com/isnooze/0.4/
+
 What it does
 ======
 
